@@ -82,17 +82,17 @@ app/
 │           └── order_repository.rb
 │
 ├── application/                     # アプリケーション層（ユースケース）
-│   ├── user/
+│   ├── user_aggregate/
 │   │   └── (ログイン認証機能はdeviseを使用)
 │   │
-│   ├── product/
+│   ├── product_aggregate/
 │   │   ├── list_products_service.rb
 │   │   └── get_product_service.rb
-│   ├── cart/
+│   ├── cart_aggregate/
 │   │   ├── add_to_cart_service.rb
 │   │   ├── get_cart_service.rb
 │   │   └── remove_from_cart_service.rb
-│   └── order/
+│   └── order_aggregate/
 │       ├── create_order_service.rb
 │       └── get_orders_service.rb
 │
