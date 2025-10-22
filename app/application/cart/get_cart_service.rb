@@ -16,7 +16,7 @@ module Application
       # @param user_id [Integer]
       # @return [Hash] { cart_items: Array, products: Hash, total: BigDecimal }
       def execute(user_id:)
-        user_id_vo = Domain::User::ValueObject::UserId.new(user_id)
+        user_id_vo = Domain::UserAggregate::ValueObject::UserId.new(user_id)
         cart_items = @cart_repository.find_by_user_id(user_id_vo)
 
         # 商品情報を取得

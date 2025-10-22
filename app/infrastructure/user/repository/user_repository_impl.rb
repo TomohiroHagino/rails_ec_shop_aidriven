@@ -4,7 +4,7 @@ module Infrastructure
   module User
     module Repository
       # ユーザーリポジトリの実装（ActiveRecord使用）
-      class UserRepositoryImpl < Domain::User::Repository::UserRepository
+      class UserRepositoryImpl < Domain::UserAggregate::Repository::UserRepository
         # IDでユーザーを検索
         def find(id)
           user = ::User.find_by(id: id.value)
@@ -48,10 +48,10 @@ module Infrastructure
 
         # UserからUserEntityに変換
         def to_entity(user)
-          Domain::User::Entity::UserEntity.new(
-            id: Domain::User::ValueObject::UserId.new(user.id),
+          Domain::UserAggregate::Entity::UserEntity.new(
+            id: Domain::UserAggregate::ValueObject::UserId.new(user.id),
             name: user.name,
-            email: Domain::User::ValueObject::Email.new(user.email),
+            email: Domain::UserAggregate::ValueObject::Email.new(user.email),
             password_digest: user.encrypted_password,
             created_at: user.created_at,
             updated_at: user.updated_at

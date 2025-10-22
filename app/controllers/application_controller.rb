@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
     @current_user = begin
       user_repository = Infrastructure::User::Repository::UserRepositoryImpl.new
-      user_id = Domain::User::ValueObject::UserId.new(devise_user.id)
+      user_id = Domain::UserAggregate::ValueObject::UserId.new(devise_user.id)
       user_repository.find(user_id)
     end
   end

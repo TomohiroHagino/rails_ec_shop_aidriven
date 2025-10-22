@@ -4,7 +4,7 @@ module Infrastructure
   module Order
     module Repository
       # 注文リポジトリの実装（ActiveRecord使用）
-      class OrderRepositoryImpl < Domain::Order::Repository::OrderRepository
+      class OrderRepositoryImpl < Domain::OrderAggregate::Repository::OrderRepository
         # IDで注文を検索
         def find(id)
           order = ::Order.find_by(id: id.value)
@@ -59,11 +59,11 @@ module Infrastructure
 
         # OrderからOrderEntityに変換
         def to_entity(order)
-          Domain::Order::Entity::OrderEntity.new(
-            id: Domain::Order::ValueObject::OrderId.new(order.id),
-            user_id: Domain::User::ValueObject::UserId.new(order.user_id),
-            total_amount: Domain::Product::ValueObject::Price.new(order.total_amount),
-            status: Domain::Order::ValueObject::OrderStatus.new(order.status),
+          Domain::OrderAggregate::Entity::OrderEntity.new(
+            id: Domain::OrderAggregate::ValueObject::OrderId.new(order.id),
+            user_id: Domain::UserAggregate::ValueObject::UserId.new(order.user_id),
+            total_amount: Domain::ProductAggregate::ValueObject::Price.new(order.total_amount),
+            status: Domain::OrderAggregate::ValueObject::OrderStatus.new(order.status),
             created_at: order.created_at,
             updated_at: order.updated_at
           )
@@ -81,12 +81,12 @@ module Infrastructure
 
         # OrderItemからOrderItemEntityに変換
         def to_item_entity(item)
-          Domain::Order::Entity::OrderItemEntity.new(
+          Domain::OrderAggregate::Entity::OrderItemEntity.new(
             id: item.id,
-            order_id: Domain::Order::ValueObject::OrderId.new(item.order_id),
-            product_id: Domain::Product::ValueObject::ProductId.new(item.product_id),
+            order_id: Domain::OrderAggregate::ValueObject::OrderId.new(item.order_id),
+            product_id: Domain::ProductAggregate::ValueObject::ProductId.new(item.product_id),
             quantity: item.quantity,
-            price: Domain::Product::ValueObject::Price.new(item.price),
+            price: Domain::ProductAggregate::ValueObject::Price.new(item.price),
             created_at: item.created_at,
             updated_at: item.updated_at
           )

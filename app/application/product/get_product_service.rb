@@ -10,9 +10,9 @@ module Application
 
       # 商品を取得
       # @param product_id [Integer]
-      # @return [Domain::Product::Entity::ProductEntity]
+      # @return [Domain::ProductAggregate::Entity::ProductEntity]
       def execute(product_id:)
-        product_id_vo = Domain::Product::ValueObject::ProductId.new(product_id)
+        product_id_vo = Domain::ProductAggregate::ValueObject::ProductId.new(product_id)
         product = @product_repository.find(product_id_vo)
 
         raise ArgumentError, '商品が見つかりません' unless product

@@ -48,7 +48,7 @@ Ruby on Rails 8 と DDD（ドメイン駆動設計）で構築されたECショ�
 ```
 app/
 ├── domain/                          # ドメイン層
-│   ├── user/                        # Userドメイン
+│   ├── user_aggregate/               # Userアグリゲートルート
 │   │   ├── entity/
 │   │   │   └── user_entity.rb      # ユーザーエンティティ
 │   │   ├── value_object/
@@ -56,7 +56,7 @@ app/
 │   │   │   └── email.rb            # メールアドレス値オブジェクト
 │   │   └── repository/
 │   │       └── user_repository.rb  # ユーザーリポジトリインターフェース
-│   ├── product/                     # Productドメイン
+│   ├── product_aggregate/            # Productアグリゲートルート
 │   │   ├── entity/
 │   │   │   └── product_entity.rb
 │   │   ├── value_object/
@@ -64,14 +64,14 @@ app/
 │   │   │   └── price.rb
 │   │   └── repository/
 │   │       └── product_repository.rb
-│   ├── cart/                        # Cartドメイン
+│   ├── cart_aggregate/               # Cartアグリゲートルート
 │   │   ├── entity/
 │   │   │   └── cart_item_entity.rb
 │   │   ├── value_object/
 │   │   │   └── cart_item_id.rb
 │   │   └── repository/
 │   │       └── cart_repository.rb
-│   └── order/                       # Orderドメイン
+│   └── order_aggregate/              # Orderアグリゲートルート
 │       ├── entity/
 │       │   ├── order_entity.rb
 │       │   └── order_item_entity.rb
@@ -294,6 +294,12 @@ bundle exec rspec spec/domain/user/entity/user_entity_spec.rb
 ### 1. Aggregate Pattern
 
 **OrderEntity** が **OrderItemEntity** を集約し、整合性を保証します。
+各ドメインは明確にアグリゲートルートとして設計されています：
+
+- **UserAggregate**: ユーザー情報の整合性を保証
+- **ProductAggregate**: 商品情報の整合性を保証  
+- **CartAggregate**: カートアイテムの整合性を保証
+- **OrderAggregate**: 注文と注文明細の整合性を保証
 
 ### 2. Repository Pattern
 
@@ -335,7 +341,7 @@ end
 ### Domain Entity（Domain層）
 
 ```ruby
-# app/domain/user/entity/user_entity.rb
+# app/domain/user_aggregate/entity/user_entity.rb
 class UserEntity
   # ビジネスロジック専用
   def change_email(new_email)
@@ -349,10 +355,10 @@ end
 ```ruby
 # app/infrastructure/user/repository/user_repository_impl.rb
 def to_entity(user)
-  Domain::User::Entity::UserEntity.new(
-    id: Domain::User::ValueObject::UserId.new(user.id),
+  Domain::UserAggregate::Entity::UserEntity.new(
+    id: Domain::UserAggregate::ValueObject::UserId.new(user.id),
     name: user.name,
-    email: Domain::User::ValueObject::Email.new(user.email),
+    email: Domain::UserAggregate::ValueObject::Email.new(user.email),
     password_digest: user.encrypted_password
   )
 end

@@ -12,7 +12,7 @@ module Application
       # @param cart_item_id [Integer]
       # @return [Boolean]
       def execute(cart_item_id:)
-        cart_item_id_vo = Domain::Cart::ValueObject::CartItemId.new(cart_item_id)
+        cart_item_id_vo = Domain::CartAggregate::ValueObject::CartItemId.new(cart_item_id)
         @cart_repository.delete(cart_item_id_vo)
       end
     end

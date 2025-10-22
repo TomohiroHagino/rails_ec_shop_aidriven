@@ -16,7 +16,7 @@ module Application
       # @param user_id [Integer]
       # @return [Array<Hash>] 注文とそのアイテムのリスト
       def execute(user_id:)
-        user_id_vo = Domain::User::ValueObject::UserId.new(user_id)
+        user_id_vo = Domain::UserAggregate::ValueObject::UserId.new(user_id)
         orders = @order_repository.find_by_user_id(user_id_vo)
 
         orders.map do |order|
@@ -40,4 +40,3 @@ module Application
     end
   end
 end
-

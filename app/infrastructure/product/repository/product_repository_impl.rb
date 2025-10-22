@@ -4,7 +4,7 @@ module Infrastructure
   module Product
     module Repository
       # 商品リポジトリの実装（ActiveRecord使用）
-      class ProductRepositoryImpl < Domain::Product::Repository::ProductRepository
+      class ProductRepositoryImpl < Domain::ProductAggregate::Repository::ProductRepository
         # IDで商品を検索
         def find(id)
           product = ::Product.find_by(id: id.value)
@@ -45,11 +45,11 @@ module Infrastructure
 
         # ProductからProductEntityに変換
         def to_entity(product)
-          Domain::Product::Entity::ProductEntity.new(
-            id: Domain::Product::ValueObject::ProductId.new(product.id),
+          Domain::ProductAggregate::Entity::ProductEntity.new(
+            id: Domain::ProductAggregate::ValueObject::ProductId.new(product.id),
             name: product.name,
             description: product.description,
-            price: Domain::Product::ValueObject::Price.new(product.price),
+            price: Domain::ProductAggregate::ValueObject::Price.new(product.price),
             stock_quantity: product.stock_quantity,
             created_at: product.created_at,
             updated_at: product.updated_at

@@ -16,9 +16,9 @@ module Application
 
       # カートから注文を作成
       # @param user_id [Integer]
-      # @return [Domain::Order::Entity::OrderEntity]
+      # @return [Domain::OrderAggregate::Entity::OrderEntity]
       def execute(user_id:)
-        user_id_vo = Domain::User::ValueObject::UserId.new(user_id)
+        user_id_vo = Domain::UserAggregate::ValueObject::UserId.new(user_id)
 
         # カートアイテムを取得
         cart_items = @cart_repository.find_by_user_id(user_id_vo)
@@ -47,17 +47,17 @@ module Application
         # トランザクション内で注文を作成
         ActiveRecord::Base.transaction do
           # 注文を作成
-          order = Domain::Order::Entity::OrderEntity.new(
+          order = Domain::OrderAggregate::Entity::OrderEntity.new(
             id: nil,
             user_id: user_id_vo,
-            total_amount: Domain::Product::ValueObject::Price.new(total_amount),
-            status: Domain::Order::ValueObject::OrderStatus.new(Domain::Order::ValueObject::OrderStatus::PENDING)
+            total_amount: Domain::ProductAggregate::ValueObject::Price.new(total_amount),
+            status: Domain::OrderAggregate::ValueObject::OrderStatus.new(Domain::OrderAggregate::ValueObject::OrderStatus::PENDING)
           )
           saved_order = @order_repository.save(order)
 
           # 注文アイテムを作成
           order_items_data.each do |item_data|
-            order_item = Domain::Order::Entity::OrderItemEntity.new(
+            order_item = Domain::OrderAggregate::Entity::OrderItemEntity.new(
               id: nil,
               order_id: saved_order.id,
               product_id: item_data[:product_id],

@@ -4,7 +4,7 @@ module Infrastructure
   module Cart
     module Repository
       # カートリポジトリの実装（ActiveRecord使用）
-      class CartRepositoryImpl < Domain::Cart::Repository::CartRepository
+      class CartRepositoryImpl < Domain::CartAggregate::Repository::CartRepository
         # IDでカートアイテムを検索
         def find(id)
           cart_item = ::CartItem.find_by(id: id.value)
@@ -54,10 +54,10 @@ module Infrastructure
 
         # CartItemからCartItemEntityに変換
         def to_entity(cart_item)
-          Domain::Cart::Entity::CartItemEntity.new(
-            id: Domain::Cart::ValueObject::CartItemId.new(cart_item.id),
-            user_id: Domain::User::ValueObject::UserId.new(cart_item.user_id),
-            product_id: Domain::Product::ValueObject::ProductId.new(cart_item.product_id),
+          Domain::CartAggregate::Entity::CartItemEntity.new(
+            id: Domain::CartAggregate::ValueObject::CartItemId.new(cart_item.id),
+            user_id: Domain::UserAggregate::ValueObject::UserId.new(cart_item.user_id),
+            product_id: Domain::ProductAggregate::ValueObject::ProductId.new(cart_item.product_id),
             quantity: cart_item.quantity,
             created_at: cart_item.created_at,
             updated_at: cart_item.updated_at

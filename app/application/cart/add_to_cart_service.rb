@@ -16,10 +16,10 @@ module Application
       # @param user_id [Integer]
       # @param product_id [Integer]
       # @param quantity [Integer]
-      # @return [Domain::Cart::Entity::CartItemEntity]
+      # @return [Domain::CartAggregate::Entity::CartItemEntity]
       def execute(user_id:, product_id:, quantity: 1)
-        user_id_vo = Domain::User::ValueObject::UserId.new(user_id)
-        product_id_vo = Domain::Product::ValueObject::ProductId.new(product_id)
+        user_id_vo = Domain::UserAggregate::ValueObject::UserId.new(user_id)
+        product_id_vo = Domain::ProductAggregate::ValueObject::ProductId.new(product_id)
 
         # 商品の在庫チェック
         product = @product_repository.find(product_id_vo)
@@ -35,7 +35,7 @@ module Application
           @cart_repository.save(existing_cart_item)
         else
           # 新しいカートアイテムを作成
-          cart_item = Domain::Cart::Entity::CartItemEntity.new(
+          cart_item = Domain::CartAggregate::Entity::CartItemEntity.new(
             id: nil,
             user_id: user_id_vo,
             product_id: product_id_vo,

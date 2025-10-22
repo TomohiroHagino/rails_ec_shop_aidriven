@@ -12,7 +12,7 @@ RSpec.describe Application::Product::ListProductsService do
     it 'すべての商品を取得できる' do
       products = service.execute
       expect(products.size).to eq(2)
-      expect(products).to all(be_a(Domain::Product::Entity::ProductEntity))
+      expect(products).to all(be_a(Domain::ProductAggregate::Entity::ProductEntity))
     end
   end
 
