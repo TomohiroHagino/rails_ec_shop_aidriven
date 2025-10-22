@@ -83,8 +83,8 @@ app/
 │
 ├── application/                     # アプリケーション層（ユースケース）
 │   ├── user/
-│   │   ├── register_user_service.rb
-│   │   └── authenticate_user_service.rb
+│   │   └── (ログイン認証機能はdeviseを使用)
+│   │
 │   ├── product/
 │   │   ├── list_products_service.rb
 │   │   └── get_product_service.rb
@@ -308,7 +308,7 @@ bundle exec rspec spec/domain/user/entity/user_entity_spec.rb
 各ユースケースを1つのトランザクション単位で実装しています。
 
 例：
-- `RegisterUserService`: ユーザー登録
+- `ListProductsService`: 商品一覧取得
 - `AddToCartService`: カート追加
 - `CreateOrderService`: 注文作成
 
@@ -327,7 +327,8 @@ Rails の Service Container による疎結合を実現しています。
 ```ruby
 # app/models/user.rb
 class User < ApplicationRecord
-  # データベースとのやり取り専用
+  # Deviseによる認証機能
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 end
 ```
 
@@ -347,12 +348,12 @@ end
 
 ```ruby
 # app/infrastructure/user/repository/user_repository_impl.rb
-def to_entity(user_model)
+def to_entity(user)
   Domain::User::Entity::UserEntity.new(
-    id: Domain::User::ValueObject::UserId.new(user_model.id),
-    name: user_model.name,
-    email: Domain::User::ValueObject::Email.new(user_model.email),
-    password_digest: user_model.password_digest
+    id: Domain::User::ValueObject::UserId.new(user.id),
+    name: user.name,
+    email: Domain::User::ValueObject::Email.new(user.email),
+    password_digest: user.encrypted_password
   )
 end
 ```
