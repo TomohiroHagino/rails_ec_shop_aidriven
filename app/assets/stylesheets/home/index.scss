@@ -1,0 +1,67 @@
+/* ホームページ専用スタイル */
+
+.home {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.home__title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.home__description {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  color: #666;
+}
+
+.home__cta-button {
+  display: inline-block;
+  background: #4caf50;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+}
+
+.home__cta-button:hover {
+  background: #45a049;
+}
+
+.home__architecture {
+  margin-top: 4rem;
+  text-align: left;
+}
+
+.home__architecture-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.home__architecture-list {
+  line-height: 2;
+  list-style-position: inside;
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .home {
+    padding: 2rem 0;
+  }
+
+  .home__title {
+    font-size: 2rem;
+  }
+
+  .home__description {
+    font-size: 1rem;
+  }
+
+  .home__architecture-title {
+    font-size: 1.5rem;
+  }
+}
+

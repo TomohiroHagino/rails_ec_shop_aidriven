@@ -1,0 +1,359 @@
+/* 
+ * 共通スタイル - BEM方式
+ */
+
+/* リセット・ベース */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ヘッダー（Header Block） */
+.header {
+  background: #333;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header__logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.header__logo {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+.header__divider {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.header__nav-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.header__nav-link {
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.header__nav-link:hover {
+  text-decoration: underline;
+}
+
+.header__user-name {
+  color: white;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.header__logout-btn {
+  background: #d33;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.header__logout-btn:hover {
+  background: #b22;
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .header__container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header__logo-section {
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .header__nav-section {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .header__logo {
+    font-size: 1.3rem;
+  }
+
+  .header__nav-link,
+  .header__user-name {
+    font-size: 0.85rem;
+  }
+
+  .header__logout-btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* メインコンテンツ（Main Block） */
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  margin-top: 80px; /* ヘッダーの高さ分のマージン */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .main {
+    margin-top: 140px; /* モバイル時のヘッダーは高さが増える */
+    padding: 1rem 0.75rem;
+  }
+}
+
+/* フラッシュメッセージ（Flash Block） */
+.flash {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.flash--notice {
+  background: #4caf50;
+  color: white;
+}
+
+.flash--alert {
+  background: #f44336;
+  color: white;
+}
+
+/* ボタン（Button Block） */
+.btn {
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  min-height: 44px; /* タッチデバイス用の最小タッチターゲット */
+}
+
+.btn--primary {
+  background: #4caf50;
+  color: white;
+}
+
+.btn--primary:hover {
+  background: #45a049;
+}
+
+.btn--secondary {
+  background: #2196F3;
+  color: white;
+}
+
+.btn--secondary:hover {
+  background: #0b7dda;
+}
+
+.btn--danger {
+  background: #f44336;
+  color: white;
+}
+
+.btn--danger:hover {
+  background: #da190b;
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+/* リンク（Link Block） */
+.link {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* フォーム（Form Block） */
+.form {
+  max-width: 500px;
+  width: 100%;
+}
+
+.form__group {
+  margin-bottom: 1.5rem;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.form__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  min-height: 44px; /* タッチデバイス用 */
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .form {
+    max-width: 100%;
+  }
+
+  .form__input {
+    font-size: 16px; /* iOSでズームを防ぐ */
+  }
+}
+
+/* カード（Card Block） */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: white;
+}
+
+.card--shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+  }
+}
+
+/* グリッド（Grid Block） */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid--3-col {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* レスポンシブ: タブレット */
+@media (max-width: 1024px) {
+  .grid--3-col {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .grid {
+    gap: 1rem;
+  }
+
+  .grid--3-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* テキスト（Text Utility） */
+.text--center {
+  text-align: center;
+}
+
+.text--right {
+  text-align: right;
+}
+
+.text--large {
+  font-size: 1.5rem;
+}
+
+.text--xlarge {
+  font-size: 2rem;
+}
+
+.text--muted {
+  color: #666;
+}
+
+.text--success {
+  color: #4caf50;
+}
+
+.text--bold {
+  font-weight: bold;
+}
+
+/* スペーシング（Spacing Utility） */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+

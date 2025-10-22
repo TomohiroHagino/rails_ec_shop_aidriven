@@ -1,0 +1,32 @@
+/* 新規登録ページ専用スタイル */
+
+.signup {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.signup__title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.signup__footer-text {
+  margin-top: 2rem;
+  color: #666;
+  text-align: center;
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .signup {
+    margin: 1rem auto;
+  }
+
+  .signup__title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+

@@ -1,0 +1,104 @@
+/* 商品詳細ページ専用スタイル */
+
+.product-detail {
+  &__back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #2196F3;
+    text-decoration: none;
+  }
+
+  &__back-link:hover {
+    text-decoration: underline;
+  }
+
+  &__container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 800px;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  &__price {
+    font-size: 2rem;
+    color: #4caf50;
+    font-weight: bold;
+    margin: 1.5rem 0;
+  }
+
+  &__description-section {
+    margin: 1.5rem 0;
+  }
+
+  &__description-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__description-text {
+    line-height: 1.8;
+    color: #555;
+  }
+
+  &__stock {
+    margin: 1rem 0;
+  }
+
+  &__form {
+    margin-top: 2rem;
+  }
+
+  &__quantity-group {
+    margin-bottom: 1rem;
+  }
+
+  &__quantity-input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  &__submit-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+
+  &__submit-btn:hover {
+    background: #45a049;
+  }
+
+  &__login-notice {
+    margin-top: 2rem;
+    color: #666;
+  }
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .product-detail {
+    &__container {
+      padding: 1rem;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__price {
+      font-size: 1.5rem;
+    }
+  }
+}
+

@@ -1,0 +1,32 @@
+/* ログインページ専用スタイル */
+
+.login {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.login__title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.login__footer-text {
+  margin-top: 2rem;
+  color: #666;
+  text-align: center;
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .login {
+    margin: 1rem auto;
+  }
+
+  .login__title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+

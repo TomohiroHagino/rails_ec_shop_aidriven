@@ -1,0 +1,58 @@
+<h1 class="orders__title">注文履歴</h1>
+
+<% if @orders_with_items.empty? %>
+  <div class="orders__empty">
+    <p>注文履歴がありません</p>
+    <%= link_to "商品一覧へ", products_path, class: "orders__empty-link" %>
+  </div>
+<% else %>
+  <div class="mt-4">
+    <% @orders_with_items.each do |order_data| %>
+      <% order = order_data[:order] %>
+      <% items = order_data[:items] %>
+      
+      <div class="order-card">
+        <div class="order-card__header">
+          <div class="order-card__info">
+            <h3 class="order-card__id">注文 #<%= order.id.value %></h3>
+            <p class="order-card__date">注文日: <%= order.created_at.strftime('%Y年%m月%d日 %H:%M') %></p>
+            <p class="order-card__status">
+              ステータス: 
+              <span class="order-card__status-badge">
+                <%= case order.status.value
+                    when 'pending' then '処理中'
+                    when 'confirmed' then '確定'
+                    when 'shipped' then '発送済み'
+                    when 'delivered' then '配達完了'
+                    when 'cancelled' then 'キャンセル'
+                    else order.status.value
+                    end %>
+              </span>
+            </p>
+          </div>
+          
+          <div class="order-card__total">
+            <p class="order-card__total-amount">
+              ¥<%= number_with_delimiter(order.total_amount.to_i) %>
+            </p>
+          </div>
+        </div>
+        
+        <h4 class="order-card__items-title">注文内容</h4>
+        <% items.each do |item_data| %>
+          <% item = item_data[:order_item] %>
+          <% product = item_data[:product] %>
+          
+          <div class="order-item">
+            <p class="order-item__name"><strong><%= product&.name || '商品情報なし' %></strong></p>
+            <p class="order-item__details">
+              単価: ¥<%= number_with_delimiter(item.price.to_i) %> × <%= item.quantity %>個 = 
+              ¥<%= number_with_delimiter(item.price.to_i * item.quantity) %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

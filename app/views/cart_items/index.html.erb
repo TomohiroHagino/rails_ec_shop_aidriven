@@ -1,0 +1,39 @@
+<h1 class="cart__title">カート</h1>
+
+<% if @cart_items.empty? %>
+  <div class="cart__empty">
+    <p>カートは空です</p>
+    <%= link_to "商品一覧へ", products_path, class: "cart__empty-link" %>
+  </div>
+<% else %>
+  <div class="mt-4">
+    <% @cart_items.each do |cart_item| %>
+      <% product = @products[cart_item.product_id.value] %>
+      <% if product %>
+        <div class="cart-item">
+          <div class="cart-item__info">
+            <h3 class="cart-item__title"><%= product.name %></h3>
+            <p class="cart-item__unit-price">単価: ¥<%= number_with_delimiter(product.price.to_i) %></p>
+            <p class="cart-item__quantity">数量: <%= cart_item.quantity %></p>
+            <p class="cart-item__subtotal">小計: ¥<%= number_with_delimiter(product.price.to_i * cart_item.quantity) %></p>
+          </div>
+          
+          <div>
+            <%= button_to "削除", cart_item_path(cart_item.id.value), method: :delete, class: "cart-item__delete-btn" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    
+    <div class="cart-summary">
+      <p class="cart-summary__total">
+        合計: ¥<%= number_with_delimiter(@total.to_i) %>
+      </p>
+    
+      <%= form_with url: orders_path, method: :post, local: true, class: "cart-summary__checkout-form" do |f| %>
+        <%= f.submit "注文を確定する", class: "cart-summary__checkout-btn" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

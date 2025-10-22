@@ -1,0 +1,17 @@
+<div class="home">
+  <h1 class="home__title">ECショップへようこそ</h1>
+  <p class="home__description">DDD（ドメイン駆動設計）で構築されたECショップアプリケーションです</p>
+  
+  <%= link_to "商品一覧を見る", products_path, class: "home__cta-button" %>
+</div>
+
+<div class="home__architecture">
+  <h2 class="home__architecture-title">アーキテクチャ</h2>
+  <ul class="home__architecture-list">
+    <li><strong>Domain層</strong>: エンティティ、値オブジェクト、リポジトリインターフェース</li>
+    <li><strong>Application層</strong>: ユースケース（ビジネスロジック）</li>
+    <li><strong>Infrastructure層</strong>: リポジトリ実装、ActiveRecord</li>
+    <li><strong>Presentation層</strong>: Controller、View</li>
+  </ul>
+</div>
+

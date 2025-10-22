@@ -1,0 +1,134 @@
+/* 注文履歴ページ専用スタイル */
+
+.orders {
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+
+  &__empty-link {
+    display: inline-block;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+
+  &__empty-link:hover {
+    background: #0b7dda;
+  }
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__id {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__date {
+    color: #666;
+    margin: 0.5rem 0;
+  }
+
+  &__status {
+    margin: 0.5rem 0;
+  }
+
+  &__status-badge {
+    background: #2196F3;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  &__total {
+    text-align: right;
+  }
+
+  &__total-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4caf50;
+  }
+
+  &__items-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.order-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &__name {
+    margin: 0.25rem 0;
+    font-weight: 500;
+  }
+
+  &__details {
+    margin: 0.25rem 0;
+    color: #666;
+  }
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .order-card {
+    padding: 1rem;
+
+    &__header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+
+    &__total {
+      text-align: left;
+    }
+
+    &__total-amount {
+      font-size: 1.3rem;
+    }
+  }
+
+  .order-item {
+    &__details {
+      font-size: 0.85rem;
+      word-break: break-word;
+    }
+  }
+}
+

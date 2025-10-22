@@ -1,0 +1,107 @@
+/* 商品一覧ページ専用スタイル */
+
+.products {
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  &__description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+  }
+
+  &__price {
+    font-size: 1.5rem;
+    color: #4caf50;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  &__stock {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  &__actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__detail-link {
+    flex: 1;
+    display: inline-block;
+    background: #2196F3;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  &__detail-link:hover {
+    background: #0b7dda;
+  }
+
+  &__add-form {
+    flex: 1;
+  }
+
+  &__add-btn {
+    width: 100%;
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__add-btn:hover {
+    background: #45a049;
+  }
+}
+
+/* レスポンシブ: モバイル */
+@media (max-width: 768px) {
+  .product-card {
+    &__actions {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    &__detail-link,
+    &__add-btn {
+      width: 100%;
+    }
+  }
+}
+

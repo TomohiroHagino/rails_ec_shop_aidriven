@@ -1,0 +1,11 @@
+<% if resource.errors.any? %>
+  <div class="flash flash--alert">
+    <h2><%= pluralize(resource.errors.count, "件のエラー") %>が発生しました：</h2>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
