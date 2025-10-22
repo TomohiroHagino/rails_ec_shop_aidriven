@@ -111,17 +111,17 @@ app/
 │           └── order_repository_impl.rb
 │
 ├── models/                          # ActiveRecordモデル（Infrastructure層で使用）
-│   ├── user_model.rb
-│   ├── product_model.rb
-│   ├── cart_item_model.rb
-│   ├── order_model.rb
-│   └── order_item_model.rb
+│   ├── user.rb
+│   ├── product.rb
+│   ├── cart_item.rb
+│   ├── order.rb
+│   └── order_item.rb
 │
 ├── controllers/                     # Presentation層
 │   ├── application_controller.rb
 │   ├── home_controller.rb
-│   ├── users_controller.rb
-│   ├── sessions_controller.rb
+│   ├── users/
+│   │   └── registrations_controller.rb
 │   ├── products_controller.rb
 │   ├── cart_items_controller.rb
 │   └── orders_controller.rb
@@ -131,7 +131,10 @@ app/
     │   └── application.html.erb
     ├── home/
     ├── users/
-    ├── sessions/
+    │   ├── sessions/
+    │   │   └── new.html.erb
+    │   └── registrations/
+    │       └── new.html.erb
     ├── products/
     ├── cart_items/
     └── orders/
@@ -322,8 +325,8 @@ Rails の Service Container による疎結合を実現しています。
 ### ActiveRecord Model（Infrastructure層）
 
 ```ruby
-# app/models/user_model.rb
-class UserModel < ApplicationRecord
+# app/models/user.rb
+class User < ApplicationRecord
   # データベースとのやり取り専用
 end
 ```
