@@ -153,10 +153,10 @@ app/
 ```
 
 **ルール**:
-- Domain層は他の層に依存しない（純粋なビジネスロジック）
-- Application層はDomain層のみに依存
-- Infrastructure層はDomain層のインターフェースを実装
 - Presentation層はApplication層を呼び出す
+- Application層はDomain層のみに依存
+- Domain層は他の層に依存しない（純粋なビジネスロジック）
+- Infrastructure層はDomain層のインターフェースを実装
 
 ---
 
