@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Application::Cart::AddToCartService do
+RSpec.describe Application::CartAggregate::AddToCartService do
   let(:service) { described_class.new }
   let(:user) { create(:user) }
   let(:product) { create(:product, stock_quantity: 10) }

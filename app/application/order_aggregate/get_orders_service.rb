@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Application
-  module Order
+  module OrderAggregate
     # 注文一覧取得ユースケース
     class GetOrdersService
       def initialize(

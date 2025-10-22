@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Application::Order::CreateOrderService do
+RSpec.describe Application::OrderAggregate::CreateOrderService do
   let(:service) { described_class.new }
   let(:user) { create(:user) }
   let(:product1) { create(:product, price: 1000, stock_quantity: 10) }

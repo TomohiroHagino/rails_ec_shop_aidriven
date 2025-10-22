@@ -5,13 +5,13 @@ class OrdersController < ApplicationController
 
   # 注文一覧
   def index
-    service = Application::Order::GetOrdersService.new
+    service = Application::OrderAggregate::GetOrdersService.new
     @orders_with_items = service.execute(user_id: current_user.id.value)
   end
 
   # 注文作成
   def create
-    service = Application::Order::CreateOrderService.new
+    service = Application::OrderAggregate::CreateOrderService.new
 
     begin
       service.execute(user_id: current_user.id.value)

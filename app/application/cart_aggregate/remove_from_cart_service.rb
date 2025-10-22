@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Application
-  module Cart
+  module CartAggregate
     # カートから削除ユースケース
     class RemoveFromCartService
       def initialize(cart_repository: Infrastructure::Cart::Repository::CartRepositoryImpl.new)

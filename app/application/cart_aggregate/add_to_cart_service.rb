@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Application
-  module Cart
+  module CartAggregate
     # カート追加ユースケース
     class AddToCartService
       def initialize(

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Application
-  module Product
+  module ProductAggregate
     # 商品詳細取得ユースケース
     class GetProductService
       def initialize(product_repository: Infrastructure::Product::Repository::ProductRepositoryImpl.new)

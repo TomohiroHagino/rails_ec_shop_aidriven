@@ -5,7 +5,7 @@ class CartItemsController < ApplicationController
 
   # カート表示
   def index
-    service = Application::Cart::GetCartService.new
+    service = Application::CartAggregate::GetCartService.new
     result = service.execute(user_id: current_user.id.value)
     
     @cart_items = result[:cart_items]
@@ -15,7 +15,7 @@ class CartItemsController < ApplicationController
 
   # カートに追加
   def create
-    service = Application::Cart::AddToCartService.new
+    service = Application::CartAggregate::AddToCartService.new
 
     begin
       service.execute(
@@ -34,7 +34,7 @@ class CartItemsController < ApplicationController
 
   # カートから削除
   def destroy
-    service = Application::Cart::RemoveFromCartService.new
+    service = Application::CartAggregate::RemoveFromCartService.new
 
     begin
       service.execute(cart_item_id: params[:id])

@@ -3,13 +3,13 @@
 class ProductsController < ApplicationController
   # 商品一覧
   def index
-    service = Application::Product::ListProductsService.new
+    service = Application::ProductAggregate::ListProductsService.new
     @products = service.execute_in_stock
   end
 
   # 商品詳細
   def show
-    service = Application::Product::GetProductService.new
+    service = Application::ProductAggregate::GetProductService.new
     
     begin
       @product = service.execute(product_id: params[:id])

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Application::Product::ListProductsService do
+RSpec.describe Application::ProductAggregate::ListProductsService do
   let(:service) { described_class.new }
 
   describe '#execute' do
