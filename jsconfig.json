@@ -5,8 +5,8 @@
     "checkJs": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["app/assets/javascripts/*"]
+      "*": ["app/javascript/*"]
     }
   },
-  "include": ["app/assets/javascripts/**/*"]
+  "include": ["app/javascript/**/*"]
 }
