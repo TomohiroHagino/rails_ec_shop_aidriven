@@ -41,7 +41,6 @@ module Infrastructure
           return false unless user
 
           user.destroy
-          true
         end
 
         private

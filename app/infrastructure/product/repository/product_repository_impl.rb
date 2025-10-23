@@ -38,7 +38,6 @@ module Infrastructure
           return false unless product
 
           product.destroy
-          true
         end
 
         private

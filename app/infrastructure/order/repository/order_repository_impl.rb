@@ -38,7 +38,6 @@ module Infrastructure
           return false unless order
 
           order.destroy
-          true
         end
 
         # 注文アイテムを取得
