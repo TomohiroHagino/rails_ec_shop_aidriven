@@ -165,6 +165,47 @@ RSpec.describe Application::OrderAggregate::CancelStaleOrdersService do
       end
     end
 
+    context 'dry_runモードのテスト' do
+      let(:stale_order) do
+        Domain::OrderAggregate::Entity::OrderEntity.new(
+          id: Domain::OrderAggregate::ValueObject::OrderId.new(1),
+          user_id: Domain::UserAggregate::ValueObject::UserId.new(user.id),
+          status: Domain::OrderAggregate::ValueObject::OrderStatus.new('pending'),
+          total_amount: Domain::ProductAggregate::ValueObject::Price.new(1000),
+          created_at: 8.days.ago
+        )
+      end
+
+      before do
+        allow(order_repository).to receive(:find_stale_pending_orders).and_return([stale_order])
+        allow(order_repository).to receive(:save)
+      end
+
+      it 'dry_runモードでは実際にキャンセルされない' do
+        result = service.execute(dry_run: true)
+
+        expect(result[:cancelled_count]).to eq(1)
+        expect(result[:dry_run]).to be true
+        expect(order_repository).not_to have_received(:save)
+      end
+
+      it 'dry_runモードではDRY RUNログが出力される' do
+        expect(Rails.logger).to receive(:info).with('[DRY RUN] 注文ID 1 をキャンセル対象としました（実際にはキャンセルしません）')
+
+        service.execute(dry_run: true)
+      end
+
+      it 'dry_runがfalseの場合は通常通りキャンセルされる' do
+        allow(order_repository).to receive(:save)
+
+        result = service.execute(dry_run: false)
+
+        expect(result[:cancelled_count]).to eq(1)
+        expect(result[:dry_run]).to be false
+        expect(order_repository).to have_received(:save)
+      end
+    end
+
     context 'ログ出力のテスト' do
       let(:stale_order) do
         Domain::OrderAggregate::Entity::OrderEntity.new(
