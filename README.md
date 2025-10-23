@@ -320,8 +320,7 @@ bundle exec rspec spec/domain/user/entity/user_entity_spec.rb
 
 ### 5. Dependency Injection
 
-Rails の Service Container による疎結合を実現しています。
-
+コンストラクタインジェクションによる疎結合を実現しています。
 ---
 
 ## 🤔 「2つのモデル」問題の解決
