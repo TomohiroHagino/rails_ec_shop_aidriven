@@ -196,7 +196,7 @@ Devise.setup do |config|
 
   # ==> Hotwire/Turbo 設定
   # Hotwire/Turboを使用する際のエラーレスポンスやリダイレクトのHTTPステータスを設定します。
-  config.responder.error_status = :unprocessable_entity
+  config.responder.error_status = :unprocessable_content
   config.responder.redirect_status = :see_other
 
   # ==> :registerable 設定

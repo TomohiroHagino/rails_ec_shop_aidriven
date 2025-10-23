@@ -16,7 +16,7 @@ gem 'dartsass-rails'
 # Build JSON APIs with ease
 gem 'jbuilder'
 # Use Devise for authentication
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'main'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
