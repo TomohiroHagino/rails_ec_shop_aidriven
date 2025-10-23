@@ -322,7 +322,7 @@ bundle exec rspec spec/domain/user/entity/user_entity_spec.rb
 
 アプリケーション層のサービスクラスについて
 RailsにはService Containerがないため、デフォルト実装を直接指定する必要がありました。
-テスト時はモックを注入できるため、実質的な依存関係の逆転は実現している
+テスト時はモックを注入できるため、実質的な依存関係の逆転は実現しています。
 
 ```ruby
 # 理想的な形（Railsでは困難）
