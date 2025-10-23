@@ -259,7 +259,7 @@ RSpecを使用したテストフレームワークを採用しています。
 
 ```bash
 # 全テスト実行
-bundle exec rspec
+bundle exec rspec --format documentation
 
 # 特定のテストを実行
 bundle exec rspec spec/domain/user/entity/user_entity_spec.rb
