@@ -1,11 +1,11 @@
-# ECショップアプリ（DDD + レイヤードアーキテクチャ）
+# ECショップアプリ（DDD + オニオンアーキテクチャ）
 
 Ruby on Rails 8 と DDD（ドメイン駆動設計）で構築されたECショップアプリケーションです。
 
 ## 📖 概要
 
 このアプリケーションは、ドメイン駆動設計（DDD）の原則に従って設計された、実践的なECショップアプリケーションです。
-レイヤードアーキテクチャを採用し、ビジネスロジックをドメイン層に集約し、インフラストラクチャから分離しています。
+オニオンアーキテクチャを採用し、ビジネスロジックをドメイン層に集約し、インフラストラクチャから分離しています。
 
 ### 主な機能
 
@@ -19,27 +19,27 @@ Ruby on Rails 8 と DDD（ドメイン駆動設計）で構築されたECショ�
 
 ## 🏗 アーキテクチャ
 
-### レイヤード構造
+### オニオン構造
 
 ```
 ┌─────────────────────────────────┐
-│     🎨 Presentation層            │  Controller、View
+│        Presentation             │  Controller、View
 │  (app/controllers, app/views)   │
 └─────────────────────────────────┘
               ↓
 ┌─────────────────────────────────┐
-│     ⚙️ Application層             │  ユースケース（サービス）
-│      (app/application)          │
+│        Application              │  ユースケース（サービス）
+│     (app/application)           │
 └─────────────────────────────────┘
               ↓
 ┌─────────────────────────────────┐
-│     💡 Domain層                   │  エンティティ、値オブジェクト
-│       (app/domain)              │  リポジトリインターフェース
+│         Domain                  │  エンティティ、値オブジェクト
+│     (app/domain)                │  リポジトリインターフェース
 └─────────────────────────────────┘
               ↑
 ┌─────────────────────────────────┐
-│     🗄️ Infrastructure層          │  リポジトリ実装、ActiveRecord
-│   (app/infrastructure)          │
+│       Infrastructure            │  リポジトリ実装、ActiveRecord
+│     (app/infrastructure)        │
 └─────────────────────────────────┘
 ```
 
@@ -320,7 +320,26 @@ bundle exec rspec spec/domain/user/entity/user_entity_spec.rb
 
 ### 5. Dependency Injection
 
-コンストラクタインジェクションによる疎結合を実現しています。
+アプリケーション層のサービスクラスについて
+RailsにはService Containerがないため、デフォルト実装を直接指定する必要がありました。
+テスト時はモックを注入できるため、実質的な依存関係の逆転は実現している
+
+```ruby
+# 理想的な形（Railsでは困難）
+class ListProductsService
+  def initialize(product_repository:)
+    @product_repository = product_repository
+  end
+end
+
+# 現実的な形（デフォルト実装付き）
+class ListProductsService
+  def initialize(product_repository: Infrastructure::Product::Repository::ProductRepositoryImpl.new)
+    @product_repository = product_repository
+  end
+end
+```
+
 ---
 
 ## 🤔 「2つのモデル」問題の解決
