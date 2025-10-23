@@ -138,6 +138,14 @@ module Infrastructure
           )
           to_item_entity(item)
         end
+
+        # 期限切れのpending注文を取得
+        def find_stale_pending_orders(cutoff_date)
+          ::Order.where(
+            status: 'pending',
+            created_at: ..cutoff_date
+          ).map { |order| to_entity(order) }
+        end
       end
     end
   end

@@ -52,6 +52,13 @@ module Domain
         def save_item(order_item)
           raise NotImplementedError
         end
+
+        # 期限切れのpending注文を取得
+        # @param cutoff_date [Time] この日時より古い注文を対象
+        # @return [Array<Entity::OrderEntity>]
+        def find_stale_pending_orders(cutoff_date)
+          raise NotImplementedError
+        end
       end
     end
   end
