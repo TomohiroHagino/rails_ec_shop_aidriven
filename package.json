@@ -1,0 +1,22 @@
+{
+  "name": "app",
+  "private": true,
+  "scripts": {
+    "build": "esbuild app/javascript/**/*.{js,ts} --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets --outbase=app/javascript"
+  },
+  "version": "1.0.0",
+  "description": "Ruby on Rails 8 と DDD（ドメイン駆動設計）で構築されたECショップアプリケーションです。",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.25.11"
+  },
+  "dependencies": {
+    "eslint": "^9.38.0"
+  }
+}

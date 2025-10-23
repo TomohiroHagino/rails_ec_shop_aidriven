@@ -41,7 +41,7 @@ module Infrastructure
           return false unless cart_item
 
           cart_item.destroy
-          true
+          cart_item.destroyed?
         end
 
         # ユーザーのカートをすべて削除
