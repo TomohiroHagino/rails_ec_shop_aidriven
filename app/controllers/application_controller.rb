@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
     devise_user = warden.authenticate(scope: :user)
     return @current_user = nil unless devise_user
 
+    # ここだけアーキテクチャ違反を許容する(アプリケーション層がdeviseに依存してしまうから)
     @current_user = begin
       user_repository = Infrastructure::User::Repository::UserRepositoryImpl.new
       user_id = Domain::UserAggregate::ValueObject::UserId.new(devise_user.id)
